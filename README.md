@@ -19,4 +19,4 @@ This Unity project demonstrates an AR application built using ARFoundation. The 
 ### Steps to Run the Project
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/thippeswammy/AR-Cube-Drop.git>
