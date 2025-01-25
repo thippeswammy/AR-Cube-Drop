@@ -7,7 +7,7 @@ public class ARCubePlacement : MonoBehaviour
 {
     public ARCameraManager cameraManager; // Reference to ARCameraManager
     public GameObject cubePrefab;         // Prefab for the cube to place in AR
-
+    public bool SaveImages=false;
     private Queue<Texture2D> imageQueue = new Queue<Texture2D>(); // Queue for storing images to save
     private bool isCapturingImages = false; // Flag to indicate capturing process
     private int imagesCaptured = 0;         // Counter for captured images
@@ -25,7 +25,8 @@ public class ARCubePlacement : MonoBehaviour
             PlaceRandomColorCube(touchPosition);
 
             // Start capturing images
-            StartCoroutine(CaptureImages());
+            if (SaveImages)
+                StartCoroutine(CaptureImages());
             Debug.Log("Started capturing images.");
         }
     }
@@ -35,7 +36,7 @@ public class ARCubePlacement : MonoBehaviour
         // Convert screen position to a world position in front of the camera
         Camera mainCamera = Camera.main;
         Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-        Vector3 worldPosition = ray.origin + ray.direction * 2f; // Place cube 2m in front of the camera
+        Vector3 worldPosition = ray.origin + ray.direction * 0.5f; // Place cube 2m in front of the camera
 
         // Instantiate cube at the calculated position
         GameObject newCube = Instantiate(cubePrefab, worldPosition, Quaternion.identity);
